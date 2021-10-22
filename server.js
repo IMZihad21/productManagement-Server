@@ -38,6 +38,13 @@ const dbConnect = async () => {
             const product = await productCollection.findOne(query);
             res.json(product);
         })
+
+        // POST API
+        app.post('/product', async (req, res) => {
+            const product = req.body;
+            const result = await productCollection.insertOne(product);
+            res.send(result);
+        })
     }
     finally {
     }
