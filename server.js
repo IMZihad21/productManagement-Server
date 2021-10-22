@@ -45,6 +45,14 @@ const dbConnect = async () => {
             const result = await productCollection.insertOne(product);
             res.send(result);
         })
+
+        // DELETE API
+        app.delete('/product/:productID', async (req, res) => {
+            const productID = req.params.productID;
+            const query = { _id: ObjectId(productID) };
+            const result = await productCollection.deleteOne(query);
+            res.json(result);
+        })
     }
     finally {
     }
